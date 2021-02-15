@@ -144,6 +144,13 @@ keys:
             fbx: FBX format (.fbx)
             3ds: 3ds format (.3ds)
 
+    render_ext:
+        type: str
+        choices:
+            exr: EXR format (.exr)
+            dpx: DPX format (.dpx)
+            png: PNG format (.png)
+            jpg: JPG format (.jpg)
 #
 # The paths section contains all the the key locations where files are to be stored
 # by Sgtk Apps. Each path is made up of several keys (like {version} or {shot}) and
@@ -362,9 +369,9 @@ paths:
     nuke_shot_pub_movie:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_{eye}_v{version}/{Shot}_{name}_{step_code}_v{version}.mov'
     
-    # TEST
-    nuke_shot_render_folder_exr:
-        definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{layer}.{pass}.exr'
+    # TEST for multi layer multi pass loader
+    nuke_shot_render_loader:
+        definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{layer}.{pass}.{SEQ}.{render_ext}'
     #
     # Hiero
     #

@@ -29,7 +29,7 @@ import cv2
 HookBaseClass = sgtk.get_hook_baseclass()
 current_engine = sgtk.platform.current_engine()  # take current used engine
 sg = current_engine.shotgun  # get shotgun API from engine
-current_engine = sgtk.platform.current_engine()
+#current_engine = sgtk.platform.current_engine()
 tk = current_engine.sgtk
 
 class BasicFilePublishPlugin(HookBaseClass):

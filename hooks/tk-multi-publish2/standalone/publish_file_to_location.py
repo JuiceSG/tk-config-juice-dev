@@ -29,7 +29,6 @@ import cv2
 HookBaseClass = sgtk.get_hook_baseclass()
 current_engine = sgtk.platform.current_engine()  # take current used engine
 sg = current_engine.shotgun  # get shotgun API from engine
-#current_engine = sgtk.platform.current_engine()
 tk = current_engine.sgtk
 
 class BasicFilePublishPlugin(HookBaseClass):
@@ -337,7 +336,10 @@ class BasicFilePublishPlugin(HookBaseClass):
         publish_path = item.properties['destination_path']
         publish_version = item.properties['version']
         publish_name = item.properties['item_new_name']
-
+        orginal_publish_name = self.get_publish_name(settings, item)
+        publish_description = item.description
+        publish_description = 'Source name: %s, %s' % (orginal_publish_name, publish_description)
+        item.description = publish_description
 
         # if the parent item has publish data, get it id to include it in the list of
         # dependencies

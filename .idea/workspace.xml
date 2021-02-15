@@ -13,11 +13,6 @@
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:github" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
@@ -26,9 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="Initial commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/standalone/publish_file_to_location.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/standalone/publish_file_to_location.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/client/download/placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/client/upload/placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/prep/download/placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/prep/upload/placeholder" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +67,14 @@
       <option name="project" value="LOCAL" />
       <updated>1613043739859</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial commit">
+      <created>1613383739358</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1613383739358</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

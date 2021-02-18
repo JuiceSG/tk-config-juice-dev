@@ -63,15 +63,14 @@ class NukeActions(HookBaseClass):
         if ext.lower() not in valid_extensions:
             raise Exception("Unsupported file extension for '%s'!" % path)
 
-        # sprawdzenie czy sciezka pasuje do loadera z layerami
-        nuke_loader_template = tk.templates['nuke_shot_render_loader']
-        path_components = os.path.split(path)
-        seq_directory = path_components[0]
-        fields = nuke_loader_template.get_fields(path)
-        layers, passes = self._get_passes_and_layers_lists(nuke_loader_template, seq_directory)
-        sequences = self._get_sequences(nuke_loader_template, fields, layers, passes)
-
+        # check if patch math loader template
+        nuke_loader_template = tk.templates['nuke_shot_render_multilayer']
         if nuke_loader_template.validate(path):
+            path_components = os.path.split(path)
+            seq_directory = path_components[0]
+            fields = nuke_loader_template.get_fields(path)
+            layers, passes = self._get_passes_and_layers_lists(nuke_loader_template, seq_directory)
+            sequences = self._get_sequences(nuke_loader_template, fields, layers, passes)
             self._create_layers_read_nodes(sequences)
         else:
             self._create_node_reader(path)

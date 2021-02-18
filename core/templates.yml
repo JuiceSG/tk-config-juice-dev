@@ -370,7 +370,7 @@ paths:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_{eye}_v{version}/{Shot}_{name}_{step_code}_v{version}.mov'
     
     # TEST for multi layer multi pass loader
-    nuke_shot_render_loader:
+    nuke_shot_render_multilayer:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{layer}.{pass}.{SEQ}.{render_ext}'
     #
     # Hiero

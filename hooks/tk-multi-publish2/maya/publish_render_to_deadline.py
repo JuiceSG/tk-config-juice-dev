@@ -4,7 +4,9 @@ import maya.mel as mel
 import sgtk
 
 HookBaseClass = sgtk.get_hook_baseclass()
-
+current_engine = sgtk.platform.current_engine()
+sg = current_engine.shotgun
+tk = current_engine.sgtk
 
 class MayaPublishJobToDeadline(HookBaseClass):
     """
@@ -224,37 +226,24 @@ class MayaPublishJobToDeadline(HookBaseClass):
 
         :returns: True if item is valid, False otherwise.
         """
-        job_name = item.properties["render_job_name"]
+        '''
+        self.logger.debug('///////////////////////////')
+        self.logger.debug(item.properties())
         template_name = settings["Publish Template"].value
-        render_output = self._get_render_output(job_name, template_name)
-        render_output = '%s/%s' % (render_output, job_name)
+        publish_template = publisher.get_template_by_name(template_name)
+        render_output = self._get_render_output(template_name, item)
         item.properties["path"] = render_output
 
-        # ---- ensure the session has been saved
-        path = _session_path()
-        if not path:
-            # the session still requires saving. provide a save button.
-            # validation fails.
-            error_msg = "The Maya session has not been saved."
-            self.logger.error(
-                error_msg,
-                extra=_get_save_as_action()
-            )
-            raise Exception(error_msg)
+        self.logger.info('Render output: %s') % render_output
+        self.logger.debug('///////////////////////////')
+        '''
+        # validation = super(MayaPublishJobToDeadline, self).validate(settings, item)
 
-        job_name = item.properties["render_job_name"]
-        if not job_name:
-            error_msg = "No job name"
-            self.logger.error(error_msg)
-            return False
+        validation = True
+        render_output = self._get_render_output(settings, item)
+        self.logger.debug('Render output: %s' % render_output)
 
-        template_name = settings["Publish Template"].value
-        if not template_name:
-            error_msg = "No valid Publish Template for publish_render_to_deadline"
-            self.logger.error(error_msg)
-            return False
-
-        return super(MayaPublishJobToDeadline, self).validate(settings, item)
+        return validation
 
     def publish(self, settings, item):
         """
@@ -268,26 +257,16 @@ class MayaPublishJobToDeadline(HookBaseClass):
             :class:`~.processing.Setting` instances.
         :param item: The :class:`~.processing.Item` instance to validate.
         """
-        sa = sgtk.authentication.ShotgunAuthenticator()
-        sa_manager = sgtk.authentication.DefaultsManager()
-        token = sa_manager.get_user_credentials()
-        session_user = sa.create_session_user(token['login'], token['session_token'])
-        sg = session_user.create_sg_connection()
 
-        mel.eval('SubmitJobToDeadline')
+        render_output = self._get_render_output(settings, item)
         job_name = item.properties["render_job_name"]
         template_name = settings["Publish Template"].value
-        render_output = self._get_render_output(job_name, template_name)
-        # render_output = '%s/%s' % (render_output, job_name) DO WYWALENIA?
+        #mel.eval('SubmitJobToDeadline')
+        #mel.eval('global string $submit_to_deadline_hook_sceneFilePath')
+        #mel.eval("$submit_to_deadline_hook_sceneFilePath = CheckSlashes(`file -q -sceneName`);")
+        mel.eval('source "X:/Juice_Pipeline/Deadline/submission/Maya/SetupSubmission_proc.mel"')
 
-        current_engine = sgtk.platform.current_engine()
-        ctx = current_engine.context
-        """data = {
-            'project': ctx.project,
-            'step': ctx.step,
-            'task': ctx.task,
-            'user': ctx.user,
-        }"""
+        ctx = item.context
 
         user = ctx.user
         user_type = user['type']
@@ -301,7 +280,9 @@ class MayaPublishJobToDeadline(HookBaseClass):
             'project_id': ctx.project['id'],
             'task_id': ctx.task['id'],
             'user_id': ctx.user['id'],
+            'render_output': str(render_output),
         }
+
         data_to_send = '%s_SG_DATA_%s' % (job_name, str(data))
         first_frame = cmds.playbackOptions(query=True, min=True)
         first_frame = int(first_frame)
@@ -327,6 +308,7 @@ class MayaPublishJobToDeadline(HookBaseClass):
         cmds.intSliderGrp(priority_field, edit=True, value=90)
 
         item.properties["path"] = render_output
+
         # Now that the path has been generated, hand it off to the
         super(MayaPublishJobToDeadline, self).publish(settings, item)
 
@@ -339,17 +321,20 @@ class MayaPublishJobToDeadline(HookBaseClass):
             return {"accepted": False}
         return None
 
-    @staticmethod
-    def _get_render_output(job_name, template_name):
-        current_engine = sgtk.platform.current_engine()
-        tk = current_engine.sgtk
-        ctx = current_engine.context
-        template = tk.templates[template_name]
-        fields = ctx.as_template_fields(template)
-        render_output = template.apply_fields(fields)
-        render_output += "/%s/" % job_name
-        render_output = sgtk.util.ShotgunPath.normalize(render_output)
-        return render_output
+    def _get_render_output(self, settings, item):
+        publisher = self.parent
+        render_path_template = settings['Publish Template'].value
+        render_path_template = publisher.get_template_by_name(render_path_template)
+        fields = self._get_fields_from_scene_path(settings, item)
+        render_path = render_path_template.apply_fields(fields)
+        return render_path
+
+    def _get_fields_from_scene_path(self, settings, item):
+        scene_path = cmds.file(query=True, sceneName=True)
+        template = tk.template_from_path(scene_path)
+        fields = template.get_fields(scene_path)
+        self.logger.debug('Fields form scene path: %s' % fields)
+        return fields
 
 def _session_path():
     """
@@ -362,7 +347,6 @@ def _session_path():
         path = path.encode("utf-8")
 
     return path
-
 
 def _get_save_as_action():
     """

@@ -76,7 +76,7 @@ class BreakdownSceneOperations(HookBaseClass):
             path = node.knob("file").value().replace("/", os.path.sep)
 
             tk_engine = self.parent.engine.sgtk
-            nuke_loader_template = tk_engine.templates['nuke_shot_render_multilayer']
+            nuke_loader_template = tk_engine.templates['shot_render_multilayer']
             '''    
             if nuke_loader_template.validate(path):
                 reads_layered.append(node)

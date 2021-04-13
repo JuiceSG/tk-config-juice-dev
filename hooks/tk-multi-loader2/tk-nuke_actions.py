@@ -64,8 +64,9 @@ class NukeActions(HookBaseClass):
             raise Exception("Unsupported file extension for '%s'!" % path)
 
         # check if patch math loader template
-        nuke_loader_template = tk.templates['nuke_shot_render_multilayer']
+        nuke_loader_template = tk.templates['shot_render_multilayer']
         if nuke_loader_template.validate(path):
+            print('Layers exists')
             path_components = os.path.split(path)
             seq_directory = path_components[0]
             fields = nuke_loader_template.get_fields(path)
@@ -73,6 +74,7 @@ class NukeActions(HookBaseClass):
             sequences = self._get_sequences(nuke_loader_template, fields, layers, passes)
             self._create_layers_read_nodes(sequences)
         else:
+            print('No Layers')
             self._create_node_reader(path)
 
     def _create_node_reader(self, path):

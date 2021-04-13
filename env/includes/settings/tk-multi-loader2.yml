@@ -77,6 +77,7 @@ settings.tk-multi-loader2.houdini:
     Photoshop Image: [file_cop]
     Rendered Image: [file_cop]
     Texture: [file_cop]
+    ABC Camera: [import]
   entities:
   - caption: Assets
     entity_type: Asset
@@ -130,6 +131,11 @@ settings.tk-multi-loader2.maya:
     ABC Camera: [reference, import]
     FBX Camera: [reference, import]
   entities:
+  - caption: Assets library
+    entity_type: Asset
+    filters:
+    - [project, is, {type: Project, id: 3471}]
+    hierarchy: [asset_library_sg_assets_asset_libraries, code]
   - caption: Assets
     entity_type: Asset
     filters:
@@ -165,6 +171,11 @@ settings.tk-multi-loader2.nuke:
     ABC Camera: [read_node]
     FBX Camera: [script_import]
   entities:
+  - caption: Assets library
+    entity_type: Asset
+    filters:
+    - [ project, is, { type: Project, id: 3471 } ]
+    hierarchy: [ project, sg_asset_types, sg_asset_group, code ]
   - caption: Assets
     entity_type: Asset
     filters:

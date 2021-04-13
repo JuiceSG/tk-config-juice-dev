@@ -148,7 +148,6 @@ class MayaSessionCollector(HookBaseClass):
             "publish_render_job.png"
         )
         render_job_name = self._get_scene_name()
-        render_job_name = "RenderJob_%s" % render_job_name
         render_job_item = parent_item.create_item(
             "maya.session.render_job",
             "Render Job",

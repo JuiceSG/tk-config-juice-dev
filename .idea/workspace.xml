@@ -20,12 +20,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/hooks/context_change.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/hooks/tk-multi-launchapp/before_app_launch.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/client/for_Juice/placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/prep/for_Juice/placeholder" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-breakdown.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-breakdown.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-launchapp.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-launchapp.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-nuke.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-breakdown/tk-nuke_scene_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-breakdown/tk-nuke_scene_operations.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-nuke_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-nuke_actions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/publish_render_to_deadline.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/publish_render_to_deadline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/standalone/publish_file_to_location.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/standalone/publish_file_to_location.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +58,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Juice_Pipeline/Juice-Event-Daemon" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../Juice_Pipeline" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -90,7 +101,21 @@
       <option name="project" value="LOCAL" />
       <updated>1613392697420</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="update">
+      <created>1613641308144</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1613641308144</updated>
+    </task>
+    <task id="LOCAL-00006" summary="update">
+      <created>1613642110731</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1613642110731</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,14 +139,24 @@
     <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="906" y="378" key="#Inspections" timestamp="1613731593661">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="906" y="378" key="#Inspections/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613731593661" />
     <state x="1045" y="523" key="#Notifications" timestamp="1612803703635">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1045" y="523" key="#Notifications/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1612803703635" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1613406314950">
+    <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613731606342">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613406314950" />
+    <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613731606342" />
+    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1618236356700">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1614097674151" />
+    <state x="1060" y="455" key="FileChooserDialogImpl/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618236356700" />
+    <state x="3620" y="455" key="FileChooserDialogImpl/2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1400" timestamp="1614957622954" />
     <state x="1158" y="597" key="Github.ShareDialog" timestamp="1613043221973">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -134,13 +169,17 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613392733154" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1613392701235">
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1613641371480">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613392701235" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613641371480" />
     <state x="999" y="0" width="1107" height="959" key="dock-window-1" timestamp="1613471577305">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="999" y="0" width="1107" height="959" key="dock-window-1/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613471577305" />
+    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1618324926088">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618324926088" />
   </component>
 </project>

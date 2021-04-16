@@ -68,32 +68,38 @@ class ContextChange(get_hook_baseclass()):
         engine = sgtk.platform.current_engine()
 
         if engine and engine.name == 'tk-houdini':
+            import hou
             if current_context.entity:
                 if current_context.entity['type'] == 'Shot':
-                    self.__change_houdini_env_vars(engine, current_context)
+                    houdini = Houdini(hou, current_context)
+                    houdini.load_env()
+                else:
+                    houdini = Houdini(hou, current_context)
+                    houdini.unset_env()
         pass
 
-    def __change_houdini_env_vars(self, engine, current_context):
-        import hou
-        print('++++++++++++++++++++++++++++++++++++++++++++++++++++++')
+
+class Houdini():
+    def __init__(self, hou, current_context):
         current_engine = sgtk.platform.current_engine()
-        tk = current_engine.sgtk
+        self.tk = current_engine.sgtk
+        self.hou = hou
+        self.current_context = current_context
 
-        print('========================================================================')
-        hou.putenv('A', str(current_context.entity)) # TEST
-
-        template = tk.templates['shot_output_area']
-        fields = current_context.as_template_fields(template)
+    def load_env(self):
+        template = self.tk.templates['shot_output_area']
+        fields = self.current_context.as_template_fields(template)
         output_path = template.apply_fields(fields)
-        hou.unsetenv('JOB')
-        hou.putenv('JOB', output_path)
-        print(hou.getenv('JOB')) # test
+        self.hou.putenv('JOB', output_path)
+        self.hou.allowEnvironmentToOverwriteVariable('JOB', True)
 
-        template = tk.templates['shot_work_area']
+        template = self.tk.templates['shot_work_area']
         work_path = template.apply_fields(fields)
-        old_otlscan_paths = hou.getenv('HOUDINI_OTLSCAN_PATH')
+        old_otlscan_paths = self.hou.getenv('HOUDINI_OTLSCAN_PATH_JBASE')
         new_otlscan_path = os.path.join(work_path, 'hda')
         otlscan_paths = old_otlscan_paths + os.pathsep + new_otlscan_path
-        hou.unsetenv('JOB')
-        hou.putenv('HOUDINI_OTLSCAN_PATH', otlscan_paths)
-        print('======================================================================== END')
+        self.hou.putenv('HOUDINI_OTLSCAN_PATH', otlscan_paths)
+
+    def unset_env(self):
+        self.hou.unsetenv('JOB')
+        self.hou.unsetenv('HOUDINI_OTLSCAN_PATH')

@@ -25,6 +25,8 @@ class BeforeAppLaunch(tank.Hook):
     # @staticmethod
     def __append_env_vars(self, env_vars):
         self.parent.log_info(env_vars)
+        if env_vars is None:
+            return
         for key, value in env_vars.items():
             existing_value = os.environ.get(key)
             if existing_value is None:
@@ -52,6 +54,7 @@ class BeforeAppLaunch(tank.Hook):
         def load_env(self):
             self.__load_project_context_env()
             self.__load_global_env()
+            self.__load_default()
 
         def __load_project_context_env(self):
             houdini_cfg_template = self.__tk.templates['houdini_project_cfg']
@@ -67,7 +70,7 @@ class BeforeAppLaunch(tank.Hook):
                 ocio_template = self.__tk.templates['ocio']
                 ocio_fields = self.__context.as_template_fields(ocio_template)
                 ocio_path = ocio_template.apply_fields(ocio_fields)
-                env_vars['HOUDINI_OTLSCAN_PATH '] = os.path.join(path, 'otls')
+                env_vars['HOUDINI_OTLSCAN_PATH'] = os.path.join(path, 'otls')
                 env_vars['OCIO'] = os.path.join(ocio_path)
                 return dict(env_vars)
 
@@ -77,3 +80,9 @@ class BeforeAppLaunch(tank.Hook):
             env_vars = dict(env_vars)
             if os.path.isfile(path):
                 self.__append_env_vars(env_vars)
+
+        def __load_default(self):
+            default_vars = {'HOUDINI_OTLSCAN_PATH': '$HFS/houdini/otls'}
+            self.__append_env_vars(default_vars)
+            otls_tmp = os.environ.get('HOUDINI_OTLSCAN_PATH')
+            os.environ['HOUDINI_OTLSCAN_PATH_JBASE'] = otls_tmp

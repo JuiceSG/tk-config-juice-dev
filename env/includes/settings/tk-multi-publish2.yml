@@ -374,8 +374,14 @@ settings.tk-multi-publish2.nuke.shot_step:
     hook: "{self}/publish_file.py"
     settings: {}
   - name: Upload for review
-    hook: "{self}/upload_version.py"
-    settings: {}
+    hook: "{self}/upload_version.py:{config}/tk-multi-publish2/nuke/upload_version.py"
+    settings:
+        EXR Output Template: nuke_shot_render_exr
+        PNG Output Template: nuke_shot_render_png
+        JPG Output Template: nuke_shot_render_jpg
+        DPX Mono Output Template: nuke_shot_render_mono_dpx
+        Stereo Output Template: nuke_shot_render_stereo
+        Movie Output Template: nuke_shot_render_movie
   - name: Begin file versioning
     hook: "{engine}/tk-multi-publish2/basic/nuke_start_version_control.py"
     settings: {}

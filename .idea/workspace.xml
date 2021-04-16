@@ -20,23 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="update">
-      <change afterPath="$PROJECT_DIR$/core/hooks/context_change.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/tk-multi-launchapp/before_app_launch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/client/for_Juice/placeholder" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/schema/project/sources/FTP/prep/for_Juice/placeholder" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/hooks/context_change.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/hooks/context_change.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-breakdown.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-breakdown.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-launchapp.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-launchapp.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-nuke.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-nuke.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-breakdown/tk-nuke_scene_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-breakdown/tk-nuke_scene_operations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-nuke_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-nuke_actions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/publish_render_to_deadline.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/publish_render_to_deadline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/standalone/publish_file_to_location.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/standalone/publish_file_to_location.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-launchapp/before_app_launch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-launchapp/before_app_launch.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,12 +139,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613731606342" />
-    <state x="1060" y="455" key="FileChooserDialogImpl" timestamp="1618236356700">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="3620" y="455" key="FileChooserDialogImpl" timestamp="1618586197014">
+      <screen x="2560" y="0" width="2560" height="1400" />
     </state>
     <state x="1060" y="455" key="FileChooserDialogImpl/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1614097674151" />
     <state x="1060" y="455" key="FileChooserDialogImpl/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618236356700" />
-    <state x="3620" y="455" key="FileChooserDialogImpl/2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1400" timestamp="1614957622954" />
+    <state x="3620" y="455" key="FileChooserDialogImpl/2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1400" timestamp="1618586197014" />
     <state x="1158" y="597" key="Github.ShareDialog" timestamp="1613043221973">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -177,9 +165,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="999" y="0" width="1107" height="959" key="dock-window-1/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613471577305" />
-    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1618324926088">
+    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1618568991450">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618324926088" />
+    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618568991450" />
   </component>
 </project>

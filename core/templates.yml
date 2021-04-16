@@ -229,7 +229,7 @@ paths:
     shot_render_multilayer:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{layer}.{pass}.{SEQ}.{render_ext}'
    
-   #
+    #
     # Standalone
     #
 
@@ -375,17 +375,17 @@ paths:
         definition: '@shot_output_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{SEQ}.dpx'
     nuke_shot_render_pub_mono_dpx:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{SEQ}.dpx'
-
     nuke_shot_render_stereo:
         definition: '@shot_output_area/{Shot}_{name}_{step_code}_{eye}_v{version}/{Shot}_{name}_{step_code}_v{version}.{SEQ}.dpx'
     nuke_shot_render_pub_stereo:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_{eye}_v{version}/{Shot}_{name}_{step_code}_v{version}.{SEQ}.dpx'
+
     shot_quicktime_quick:
         definition: '@shot_output_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}_{iteration}.mov'
     nuke_shot_render_movie:
-        definition: '@shot_output_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.mov'
+        definition: '@shot_output_area/{Shot}_{name}_{step_code}_v{version}.mov'
     nuke_shot_pub_movie:
-        definition: '@shot_publish_area/{Shot}_{name}_{step_code}_{eye}_v{version}/{Shot}_{name}_{step_code}_v{version}.mov'
+        definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}.mov'
 
     #
     # Hiero

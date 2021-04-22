@@ -19,12 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/nuke/upload_version.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/nuke/upload_version.py" afterDir="false" />
-    </list>
+    <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="workinng upload_version hook with path_to_frames validation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -116,7 +111,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618678652311</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="workinng upload_version hook with path_to_frames validation">
+      <created>1619091061717</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1619091061717</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -137,7 +139,8 @@
     </ignored-roots>
     <MESSAGE value="Initial commit" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="workinng upload_version hook with path_to_frames validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="workinng upload_version hook with path_to_frames validation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="906" y="378" key="#Inspections" timestamp="1613731593661">
@@ -170,11 +173,11 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613392733154" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1618587707349">
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1619091078080">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613641371480" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618587707349" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1619091078080" />
     <state x="999" y="0" width="1107" height="959" key="dock-window-1" timestamp="1613471577305">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

@@ -13,6 +13,7 @@ import re
 import pprint
 import sgtk
 import glob
+import nuke
 from tank_vendor import six
 
 HookBaseClass = sgtk.get_hook_baseclass()
@@ -134,37 +135,17 @@ class UploadVersionPlugin(HookBaseClass):
         return super(UploadVersionPlugin, self).accept(settings, item)
 
     def validate(self, settings, item):
-
-        '''
-        publisher = self.parent
-        path = item.properties["path"]
-        movie_output_template = settings['Movie Output Template'].value
-        movie_output_template = publisher.engine.get_template_by_name(movie_output_template)
-        output_fields = movie_output_template.get_fields(path)
-        if not 'eye' in output_fields.keys():
-            output_fields['eye'] = 'left'
-        output_templates = (
-            settings['EXR Output Template'].value,
-            settings['PNG Output Template'].value,
-            settings['JPG Output Template'].value,
-            settings['DPX Mono Output Template'].value,
-            settings['Stereo Output Template'].value,
-        )
-        output_templates = (publisher.engine.get_template_by_name(template) for template in output_templates)
+        output_templates, output_fields = self.__get_output_templates(settings, item)
         output_paths = (template.apply_fields(output_fields) for template in output_templates)
-        path_to_frames = ''
-        pattern = '%\d\dd'
-        for output in output_paths:
-            frame_counter = re.findall(pattern, output)[-1]
-            self.logger.debug(output)
-            if glob.glob(output.replace(frame_counter, '*')):
-                path_to_frames = output
-                break
-        item.properties['path_to_frames'] = path_to_frames
-        self.logger.debug('Path to frame: %s' % path_to_frames)
-        '''
-
-        return super(UploadVersionPlugin, self).validate(settings, item)
+        path_to_frames = self.__path_to_frames(output_paths)
+        item.properties['__path_to_frame'] = path_to_frames
+        if path_to_frames:
+            for template in output_templates:
+                if template.validate(path_to_frames):
+                    self.logger.debug('Output frames path match template: %s' % template)
+                    return True
+        self.logger.error('Path to frames isnt valid with any template or no frames found')
+        return False
 
     def publish(self, settings, item):
         """
@@ -178,30 +159,6 @@ class UploadVersionPlugin(HookBaseClass):
 
         publisher = self.parent
         path = item.properties["path"]
-
-        movie_output_template = settings['Movie Output Template'].value
-        movie_output_template = publisher.engine.get_template_by_name(movie_output_template)
-        output_fields = movie_output_template.get_fields(path)
-        if not 'eye' in output_fields.keys():
-            output_fields['eye'] = 'left'
-        output_templates = (
-            settings['EXR Output Template'].value,
-            settings['PNG Output Template'].value,
-            settings['JPG Output Template'].value,
-            settings['DPX Mono Output Template'].value,
-            settings['Stereo Output Template'].value,
-        )
-        output_templates = (publisher.engine.get_template_by_name(template) for template in output_templates)
-        output_paths = (template.apply_fields(output_fields) for template in output_templates)
-        path_to_frames = ''
-        pattern = '%\d\dd'
-        for output in output_paths:
-            frame_counter = re.findall(pattern, output)[-1]
-            self.logger.debug(output)
-            if glob.glob(output.replace(frame_counter, '*')):
-                path_to_frames = output
-                break
-
 
         # allow the publish name to be supplied via the item properties. this is
         # useful for collectors that have access to templates and can determine
@@ -222,7 +179,7 @@ class UploadVersionPlugin(HookBaseClass):
         version_data = {
             "project": item.context.project,
             "code": publish_name,
-            "sg_path_to_frames": path_to_frames,
+            "sg_path_to_frames": item.properties['__path_to_frame'],
             "description": item.description,
             "entity": self._get_version_entity(item),
             "sg_task": item.context.task,
@@ -313,3 +270,31 @@ class UploadVersionPlugin(HookBaseClass):
             return item.context.project
         else:
             return None
+
+    def __get_output_templates(self, settings, item):
+        publisher = self.parent
+        path = item.properties["path"]
+        self.logger.debug('Item path: %s' % path)
+        movie_output_template = settings['Movie Output Template'].value
+        movie_output_template = publisher.engine.get_template_by_name(movie_output_template)
+
+        output_fields = movie_output_template.get_fields(path)
+        if not 'eye' in output_fields.keys():
+            output_fields['eye'] = 'left'
+        output_templates = (
+            settings['EXR Output Template'].value,
+            settings['PNG Output Template'].value,
+            settings['JPG Output Template'].value,
+            settings['DPX Mono Output Template'].value,
+            settings['Stereo Output Template'].value,
+        )
+        output_templates = list(publisher.engine.get_template_by_name(template) for template in output_templates)
+        return output_templates, output_fields
+
+    def __path_to_frames(self, output_paths):
+        pattern = '%\d\dd'
+        for output in output_paths:
+            frame_counter = re.findall(pattern, output)[-1]
+            if glob.glob(output.replace(frame_counter, '*')):
+                return output
+        return ''

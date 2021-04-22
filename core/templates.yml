@@ -237,6 +237,14 @@ paths:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}.{file_extension}'
 
     #
+    # Alembic caches
+    #
+
+    shot_alembic_cache:
+        definition: '@shot_output_area/{Shot}_{name}_{step_code}_v{version}.abc'
+
+
+    #
     # Flame
     #
 
@@ -386,6 +394,7 @@ paths:
         definition: '@shot_output_area/{Shot}_{name}_{step_code}_v{version}.mov'
     nuke_shot_pub_movie:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}.mov'
+
 
     #
     # Hiero

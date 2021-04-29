@@ -23,6 +23,7 @@ class MayaSessionCollector(HookBaseClass):
     collector hook.
     """
 
+
     @property
     def settings(self):
         """
@@ -57,12 +58,18 @@ class MayaSessionCollector(HookBaseClass):
                                "to publish plugins via the collected item's "
                                "properties. ",
             },
+            "Sets Prefix": {
+                "type": "list",
+                "default": ["Geo"],
+                "description": "Sets name prefix"
+            }
         }
 
         # update the base settings with these settings
         collector_settings.update(maya_session_settings)
 
         return collector_settings
+
 
     def process_current_session(self, settings, parent_item):
         """
@@ -83,6 +90,8 @@ class MayaSessionCollector(HookBaseClass):
         self._collect_cameras(session_item)
         self._collect_render_job(session_item)
         self._collect_meshes(session_item)
+        self._collect_object_sets(settings, session_item)
+
 
     def _collect_cameras(self, parent_item):
         """
@@ -134,6 +143,7 @@ class MayaSessionCollector(HookBaseClass):
 
             self.logger.debug('Collected cameras: %s' % camera_name)
 
+
     def _collect_render_job(self, parent_item):
         """
         Creates items for Deadline render job
@@ -156,6 +166,7 @@ class MayaSessionCollector(HookBaseClass):
         # set the icon for the item
         render_job_item.set_icon_from_path(icon_path)
         render_job_item.properties["render_job_name"] = render_job_name
+
 
     def _collect_meshes(self, parent_item):
         """
@@ -201,6 +212,59 @@ class MayaSessionCollector(HookBaseClass):
             # finally, add information to the mesh item that can be used
             # by the publish plugin to identify and export it properly
             mesh_item.properties["object"] = object
+
+
+    def _collect_object_sets(self, settings, parent_item):
+        """
+        collect sets which name starting with Sets Prefix pattern
+        """
+
+
+        for set_name in cmds.ls(sets=True):
+            if self._set_name_match_pattern(settings, set_name):
+                objects_in_set = self._get_meshes_from_set(set_name)
+                self._create_item_for_set(parent_item, objects_in_set, set_name)
+                self.logger.debug('Collected sets: %s' % set_name)
+
+
+    def _get_meshes_from_set(self, set_name):
+        objects_in_set = cmds.sets(set_name, q=True)
+        shapes_in_set = []
+        if objects_in_set:
+            for object in objects_in_set:
+                if cmds.listRelatives(object, shapes=True):
+                    shapes_in_set.append(object)
+        return shapes_in_set
+
+
+    def _set_name_match_pattern(self, settings, set_name):
+        lower_set_name = set_name.lower()
+        set_prefix_list = settings["Sets Prefix"].value
+        for prefix in set_prefix_list:
+            lower_prefix = prefix.lower()
+            if lower_set_name.startswith(lower_prefix):
+                return True
+        return False
+
+
+    def _create_item_for_set(self, parent_item, objects_in_set, set_name):
+        icon_path = os.path.join(
+            self.disk_location,
+            os.pardir,
+            "icons",
+            "mesh.png"
+        )
+        # for object in objects_in_set:
+        object_sets_item = parent_item.create_item(
+            "maya.session.object_set",
+            "Mesh (publish as ABC)",
+            object
+        )
+        object_sets_item.set_icon_from_path(icon_path)
+        object_sets_item.properties["objects"] = objects_in_set
+        object_sets_item.properties["set_name"] = set_name
+        object_sets_item.expanded = False
+
 
     @staticmethod
     def _get_scene_name():

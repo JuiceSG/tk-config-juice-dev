@@ -96,6 +96,8 @@ class Houdini():
         template = self.tk.templates['shot_work_area']
         work_path = template.apply_fields(fields)
         old_otlscan_paths = self.hou.getenv('HOUDINI_OTLSCAN_PATH_JBASE')
+        if old_otlscan_paths is None:
+            old_otlscan_paths = ''
         new_otlscan_path = os.path.join(work_path, 'hda')
         otlscan_paths = old_otlscan_paths + os.pathsep + new_otlscan_path
         self.hou.putenv('HOUDINI_OTLSCAN_PATH', otlscan_paths)

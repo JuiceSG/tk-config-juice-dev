@@ -75,7 +75,7 @@ class BeforeAppLaunch(tank.Hook):
                 return dict(env_vars)
 
         def __load_global_env(self):
-            path = 'S:/Houdini_plugs_prod/houdini.env'
+            path = 'S:/_houdini/houdini.env'
             env_vars = dotenv_values(path)
             env_vars = dict(env_vars)
             if os.path.isfile(path):

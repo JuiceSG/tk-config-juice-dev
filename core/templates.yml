@@ -56,8 +56,8 @@ keys:
         type: int
     segment_name:
         type: str
-    
-    # TEST
+    object_name:
+        type: str
     layer:
         type: str
     pass:
@@ -185,7 +185,6 @@ paths:
         definition: '@software_cfg/houdini'
     houdini_global_cfg:
         definition: 'S:/Houdini_plugs_prod'
-
     ocio:
         definition: '@software_cfg/ocio'
 
@@ -225,7 +224,6 @@ paths:
         definition: '@shot_step_root/publish'
     shot_output_area:
         definition: '@shot_step_root/output'
-    # TEST for multi layer multi pass loader
     shot_render_multilayer:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{layer}.{pass}.{SEQ}.{render_ext}'
    
@@ -296,6 +294,8 @@ paths:
         definition: '@shot_root/cache/camera/{Shot}_{name}_{step_code}_v{version}.abc'
     maya_shot_render_publish:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/'
+    maya_shot_geo_sets:
+        definition: '@shot_root/cache/model/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{object_name}_{step_code}_v{version}.abc'
 
     #
     # Houdini

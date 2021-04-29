@@ -302,6 +302,7 @@ settings.tk-multi-publish2.maya.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/maya/collector.py"
   collector_settings:
       Work Template: maya_shot_work
+      Sets Prefix: [Geo]
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
@@ -332,10 +333,10 @@ settings.tk-multi-publish2.maya.shot_step:
     hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_render_to_deadline.py"
     settings:
         Publish Template: maya_shot_render_publish
-  - name: Publish Asset Alembic
-    hook: "{self}/publish_file.py:{engine}/tk-multi-publish2/basic/publish_session_geometry.py"
+  - name: Publish geometry as separate ABC files
+    hook: "{self}/publish_file.py:{config}/tk-multi-publish2/maya/publish_set_mesh_alembic.py"
     settings:
-        Publish Template: shot_alembic_cache
+      Publish Template: maya_shot_geo_sets
   help_url: *help_url
   location: "@apps.tk-multi-publish2.location"
 

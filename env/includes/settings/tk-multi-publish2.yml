@@ -222,7 +222,7 @@ settings.tk-multi-publish2.houdini.asset_step:
 
 # shot step
 settings.tk-multi-publish2.houdini.shot_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/houdini/collector.py"
   collector_settings:
       Work Template: houdini_shot_work
   publish_plugins:
@@ -302,7 +302,7 @@ settings.tk-multi-publish2.maya.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/maya/collector.py"
   collector_settings:
       Work Template: maya_shot_work
-      Sets Prefix: [Geo]
+      Sets Prefix: [geo]
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"

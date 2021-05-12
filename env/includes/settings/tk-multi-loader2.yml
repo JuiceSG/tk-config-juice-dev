@@ -70,6 +70,7 @@ settings.tk-multi-loader2.flame:
 
 # houdini
 settings.tk-multi-loader2.houdini:
+  actions_hook: '{self}/tk-houdini_actions.py:{config}/tk-multi-loader2/tk-houdini_actions.py'
   action_mappings:
     Alembic Cache: [import]
     Houdini Scene: [merge]
@@ -78,6 +79,8 @@ settings.tk-multi-loader2.houdini:
     Rendered Image: [file_cop]
     Texture: [file_cop]
     ABC Camera: [import]
+    Vdb File: [file_load]
+    Sc File: [file_load]
   entities:
   - caption: Assets
     entity_type: Asset

@@ -60,7 +60,7 @@ class MayaSessionCollector(HookBaseClass):
             },
             "Sets Prefix": {
                 "type": "list",
-                "default": ["Geo"],
+                "default": ["geo"],
                 "description": "Sets name prefix"
             }
         }
@@ -90,7 +90,7 @@ class MayaSessionCollector(HookBaseClass):
         self._collect_cameras(session_item)
         self._collect_render_job(session_item)
         self._collect_meshes(session_item)
-        self._collect_object_sets(settings, session_item)
+        self._collect_objects_sets(settings, session_item)
 
 
     def _collect_cameras(self, parent_item):
@@ -214,7 +214,7 @@ class MayaSessionCollector(HookBaseClass):
             mesh_item.properties["object"] = object
 
 
-    def _collect_object_sets(self, settings, parent_item):
+    def _collect_objects_sets(self, settings, parent_item):
         """
         collect sets which name starting with Sets Prefix pattern
         """
@@ -257,7 +257,7 @@ class MayaSessionCollector(HookBaseClass):
         # for object in objects_in_set:
         object_sets_item = parent_item.create_item(
             "maya.session.object_set",
-            "Mesh (publish as ABC)",
+            set_name,
             object
         )
         object_sets_item.set_icon_from_path(icon_path)

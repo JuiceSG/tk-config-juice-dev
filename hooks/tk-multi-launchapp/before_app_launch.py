@@ -22,7 +22,7 @@ class BeforeAppLaunch(tank.Hook):
             houdini_env.load_env()
             self.parent.log_info('Houdini environment loaded successfully')
 
-    # @staticmethod
+
     def __append_env_vars(self, env_vars):
         self.parent.log_info(env_vars)
         if env_vars is None:
@@ -32,8 +32,13 @@ class BeforeAppLaunch(tank.Hook):
             if existing_value is None:
                 os.environ[key] = value
             else:
-                var = os.environ.get(key) + os.pathsep + value
-                os.environ[key] = var
+                old_env_values_list  = existing_value.split(';')
+                new_env_values_list = old_env_values_list + value.split(';')
+                env_values_list = list(element for element in new_env_values_list if element != '&')
+                env_values_list.append('&')
+                path_separator = os.pathsep
+                env_values = path_separator.join(env_values_list)
+                os.environ[key] = env_values
 
 
     class MayaEnv:
@@ -54,7 +59,7 @@ class BeforeAppLaunch(tank.Hook):
         def load_env(self):
             self.__load_project_context_env()
             self.__load_global_env()
-            self.__load_default()
+            # self.__load_default()
 
         def __load_project_context_env(self):
             houdini_cfg_template = self.__tk.templates['houdini_project_cfg']
@@ -84,5 +89,3 @@ class BeforeAppLaunch(tank.Hook):
         def __load_default(self):
             default_vars = {'HOUDINI_OTLSCAN_PATH': '$HFS/houdini/otls'}
             self.__append_env_vars(default_vars)
-            otls_tmp = os.environ.get('HOUDINI_OTLSCAN_PATH')
-            os.environ['HOUDINI_OTLSCAN_PATH_JBASE'] = otls_tmp

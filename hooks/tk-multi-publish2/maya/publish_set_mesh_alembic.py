@@ -40,7 +40,7 @@ class MayaPublishMeshAlembic(HookBaseClass):
         """
 
         return """
-        <p>This plugin publishes all objects in selected set as separate ABC files</p>
+        <p>This plugin publishes all objcet from set which name begin with geo_ as single ABC file</p>
         """
 
     @property
@@ -266,7 +266,7 @@ class MayaPublishMeshAlembic(HookBaseClass):
         # find the animated frame range to use:
         start_frame, end_frame = _find_scene_animation_range()
         if start_frame and end_frame:
-            alembic_args.append("-fr %d %d" % (start_frame, end_frame))
+            alembic_args.append("-fr %d %d -ws" % (start_frame, end_frame))
         alembic_args.append(_get_root(item.properties["objects"]))
         alembic_args.append("-file '%s'" % publish_path.replace("\\", "/"))
         abc_export_cmd = 'AbcExport -j "%s"' % " ".join(alembic_args)

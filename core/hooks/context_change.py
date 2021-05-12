@@ -72,10 +72,22 @@ class ContextChange(get_hook_baseclass()):
             if current_context.entity:
                 if current_context.entity['type'] == 'Shot':
                     houdini = Houdini(hou, current_context)
-                    houdini.load_env()
-                else:
-                    houdini = Houdini(hou, current_context)
-                    houdini.unset_env()
+                    houdini.set_env()
+
+        if engine and engine.name == 'tk-maya':
+            import maya
+            if current_context.entity:
+                if current_context.entity['type'] == 'Asset':
+                    maya_dcc = Maya(maya, current_context)  # standard maya var name collide with library name
+
+
+class Maya():
+    def __init__(self, maya, current_context):
+        self.cmds = maya.cmds
+        self.mel = maya.mel
+        self.current_context = current_context
+
+    def set_context_shelves_env(self):
         pass
 
 
@@ -86,22 +98,37 @@ class Houdini():
         self.hou = hou
         self.current_context = current_context
 
-    def load_env(self):
+    def set_env(self):
+        """
+        Method which create otlscan path based on context
+        """
+
+        output_path = self.__get_output_path()
+        work_path = self.__get_work_path()
+        context_base_otlscan_path = os.path.join(work_path, 'hda')
+        self.hou.putenv('JOB', output_path)
+        self.hou.allowEnvironmentToOverwriteVariable('JOB', True)
+        otlscan_env_paths = self.hou.getenv('HOUDINI_OTLSCAN_PATH')
+        old_otlscan_paths_list = otlscan_env_paths.spli('&')
+        new_otlscan_paths_list = list(element for element in old_otlscan_paths_list if element != '&')
+        current_context_base_path = self.hou.getenv('CONTEXT_OTLSCAN_J')
+        if current_context_base_path:
+            new_otlscan_paths_list.remove(current_context_base_path)
+        new_otlscan_paths_list.extend(context_base_otlscan_path, '&')
+        os_path_separator = os.pathsep
+        otlscan_paths = os_path_separator.join(new_otlscan_paths_list)
+        self.hou.putenv('HOUDINI_OTLSCAN_PATH', otlscan_paths)
+        self.hou.putenv('CONTEXT_OTLSCAN_J', context_base_otlscan_path) # store current variable to remove it in case of context change
+
+
+    def __get_output_path(self):
         template = self.tk.templates['shot_output_area']
         fields = self.current_context.as_template_fields(template)
         output_path = template.apply_fields(fields)
-        self.hou.putenv('JOB', output_path)
-        self.hou.allowEnvironmentToOverwriteVariable('JOB', True)
+        return output_path
 
+    def __get_work_path(self):
         template = self.tk.templates['shot_work_area']
+        fields = self.current_context.as_template_fields(template)
         work_path = template.apply_fields(fields)
-        old_otlscan_paths = self.hou.getenv('HOUDINI_OTLSCAN_PATH_JBASE')
-        if old_otlscan_paths is None:
-            old_otlscan_paths = ''
-        new_otlscan_path = os.path.join(work_path, 'hda')
-        otlscan_paths = old_otlscan_paths + os.pathsep + new_otlscan_path
-        self.hou.putenv('HOUDINI_OTLSCAN_PATH', otlscan_paths)
-
-    def unset_env(self):
-        self.hou.unsetenv('JOB')
-        self.hou.unsetenv('HOUDINI_OTLSCAN_PATH')
+        return work_path

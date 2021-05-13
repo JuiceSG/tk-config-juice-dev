@@ -19,10 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="workinng upload_version hook with path_to_frames validation">
+    <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="before node name changing in Houdini">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/collector.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-breakdown/tk-houdini_scene_operations.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-breakdown/tk-houdini_scene_operations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-houdini_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-houdini_actions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/publish_vdb_bgeo_files_seq.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620829128366</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="before node name changing in Houdini">
+      <created>1620901957725</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1620901957725</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -165,7 +175,8 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="update" />
     <MESSAGE value="workinng upload_version hook with path_to_frames validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="workinng upload_version hook with path_to_frames validation" />
+    <MESSAGE value="before node name changing in Houdini" />
+    <option name="LAST_COMMIT_MESSAGE" value="before node name changing in Houdini" />
   </component>
   <component name="WindowStateProjectService">
     <state x="906" y="378" key="#Inspections" timestamp="1613731593661">
@@ -212,16 +223,5 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="303" y="320" width="672" height="678" key="search.everywhere.popup/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618568991450" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/hooks/tk-multi-loader2/tk-houdini_actions.py</url>
-          <line>13</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

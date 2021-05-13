@@ -200,9 +200,11 @@ settings.tk-multi-publish2.3dsmax.shot_step: *settings_tk-multi-publish2_3dsmaxp
 
 # asset step
 settings.tk-multi-publish2.houdini.asset_step:
-  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py"
+  collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/houdini/collector.py"
   collector_settings:
       Work Template: houdini_asset_work
+      VDB Template: houdini_asset_output_vdb
+      BGEO Template: houdini_asset_output_bgeo
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"

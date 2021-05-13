@@ -496,6 +496,11 @@ paths:
         definition: '@asset_output_area/dcms/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_{step_code}_v{version}.{SEQ}.dcm'
     houdini_asset_extra_plane:
         definition: '@asset_output_area/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_{step_code}_v{version}.{SEQ}.exr'
+    # Templates for sgtk_geometry_node
+    houdini_asset_output_vdb:
+        definition: '@asset_output_area/{name}_{object_name}/{name}_{object_name}_v{version}.{SEQ}.vdb'
+    houdini_asset_output_bgeo:
+        definition: '@asset_output_area/{name}_{object_name}/{name}_{object_name}_v{version}.{SEQ}.bgeo.sc'
 
     #
     # 3dsmax

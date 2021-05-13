@@ -11,9 +11,9 @@
 """
 Hook that loads defines all the available actions, broken down by publish type.
 """
-import os
 import re
 import sgtk
+import hou
 
 HookBaseClass = sgtk.get_hook_baseclass()
 
@@ -91,16 +91,40 @@ class HoudiniActions(HookBaseClass):
             self._file_load(path, sg_publish_data)
 
     def _file_load(self, path, sg_publish_data):
-        import hou
-
         app = self.parent
-        name = sg_publish_data.get('name','published_file')
-        pattern = re.compile("[\W_]+")
-        name = pattern.sub("_", name)
+        name = self.__create_node_name(sg_publish_data)
+        path = self.__get_houdini_formated_publish_path(sg_publish_data)
+        obj_context = _get_current_context('/obj')
+        geo_node = self.__create_geo_node(app, obj_context, name)
+        file_sop = self.__create_file_sop(app, geo_node, name, path)
+        _show_node(file_sop)
+
+    def __create_node_name(self,sg_publish_data):
+        name = self.__get_name_from_publish_data(sg_publish_data)
+        version = self.__get_version_from_publish_data(sg_publish_data)
+        return '%s_%s' % (name, version)
+
+    def __get_houdini_formated_publish_path(self, sg_publish_data):
         path = self.get_publish_path(sg_publish_data)
         path = path.replace('\\', '/')
         path = path.replace('%04d', '$F4')
-        obj_context = _get_current_context('/obj')
+        return path
+
+    @staticmethod
+    def __get_name_from_publish_data(sg_publish_data):
+        name = sg_publish_data.get('name', 'published_file')
+        pattern = re.compile("[\W_]+")
+        name = pattern.sub("_", name)
+        return name
+
+    @staticmethod
+    def __get_version_from_publish_data(sg_publish_data):
+        version = sg_publish_data.get('version_number','published_file')
+        version = 'v%03d' % version
+        return version
+
+    @staticmethod
+    def __create_geo_node(app, obj_context, name):
         try:
             geo_node = obj_context.createNode('geo', name)
         except:
@@ -109,14 +133,17 @@ class HoudiniActions(HookBaseClass):
         app.log_debug("Created geo node: %s" % (geo_node.path(),))
         for child in geo_node.children():
             child.destroy()
+        return geo_node
+
+    @staticmethod
+    def __create_file_sop(app,geo_node, name, path):
         file_sop = geo_node.createNode('file', name)
         file_sop.parm('file').set(path)
         app.log_debug(
             'Creating file sop: %s\n  path: "%s" ' % (file_sop.path(), path)
         )
         file_sop.parm('reload').pressButton()
-        _show_node(file_sop)
-
+        return file_sop
 
 ##############################################################################################################
 def _get_current_context(context_type):
@@ -129,8 +156,6 @@ def _get_current_context(context_type):
     Returns the full context being displayed in that network editor.
 
     """
-
-    import hou
 
     # default to the top level context type
     context = hou.node(context_type)
@@ -150,8 +175,6 @@ def _get_current_network_panetab(context_type):
         type. Example: "/obj"
 
     """
-
-    import hou
 
     network_tab = None
 

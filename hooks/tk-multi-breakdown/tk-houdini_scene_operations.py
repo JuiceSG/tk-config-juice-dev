@@ -94,3 +94,21 @@ class BreakdownSceneOperations(HookBaseClass):
                     'Updating alembic node "%s" to: %s' % (node_path, file_path)
                 )
                 file_node.parm('file').set(file_path)
+                self.__set_node_version_names(item, file_node, file_path)
+
+    def __set_node_version_names(self, item, file_node, file_path):
+        version = self.__get_version_from_path(item, file_path)
+        current_name = file_node.name()
+        new_name = current_name.split('_')[:-1]
+        new_name.append(version)
+        new_name = '_'.join(new_name)
+        file_node.setName(new_name)
+        parent_node = file_node.parent()
+        parent_node.setName(new_name)
+
+    @staticmethod
+    def __get_version_from_path(item, file_path):
+        file_name = file_path.split('/')[-1]
+        file_name = file_name.split('.')[0]
+        file_version = file_name.split('_')[-1]
+        return file_version

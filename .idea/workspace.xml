@@ -20,21 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="workinng upload_version hook with path_to_frames validation">
-      <change afterPath="$PROJECT_DIR$/hooks/tk-multi-breakdown/tk-houdini_scene_operations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-houdini_actions.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/collector.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/publish_vdb_bgeo_files_seq.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/hooks/context_change.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/hooks/context_change.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-houdini-alembicnode.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-houdini-alembicnode.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-houdini.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-houdini.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-breakdown.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-breakdown.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-launchapp/before_app_launch.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-launchapp/before_app_launch.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/collector.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/publish_set_mesh_alembic.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/maya/publish_set_mesh_alembic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/collector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619092320825</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="workinng upload_version hook with path_to_frames validation">
+      <created>1620829128366</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1620829128366</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -203,11 +198,12 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613392733154" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1619091078080">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="3432" y="432" key="Vcs.Push.Dialog.v2" timestamp="1620829130324">
+      <screen x="2560" y="0" width="2560" height="1400" />
     </state>
     <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613641371480" />
     <state x="872" y="432" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1619091078080" />
+    <state x="3432" y="432" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1400" timestamp="1620829130324" />
     <state x="999" y="0" width="1107" height="959" key="dock-window-1" timestamp="1613471577305">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

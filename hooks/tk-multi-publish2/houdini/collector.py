@@ -44,6 +44,21 @@ class HoudiniSessionCollector(HookBaseClass):
 
         # grab any base class settings
         collector_settings = super(HoudiniSessionCollector, self).settings or {}
+        houdini_session_settings = {
+            "VDB Template": {
+                "type": "template",
+                "default": None,
+                "description": "",
+            },
+            "BGEO Template": {
+                "type": "template",
+                "default": None,
+                "description": "",
+            },
+        }
+
+        # update the base settings with these settings
+        collector_settings.update(houdini_session_settings)
         return collector_settings
 
     def process_current_session(self, settings, parent_item):
@@ -57,34 +72,42 @@ class HoudiniSessionCollector(HookBaseClass):
         # create an item representing the current houdini session
 
         item = self.collect_current_houdini_session(settings, parent_item)
-        self._collect_sgtk_geometry_out_nodes(item)
+        self._collect_sgtk_geometry_out_nodes(settings, item)
 
     def collect_current_houdini_session(self, settings, parent_item):
         session_item = super(HoudiniSessionCollector, self).collect_current_houdini_session(settings, parent_item)
         return session_item
 
-    def _collect_sgtk_geometry_out_nodes(self, parent_item):
+    def _collect_sgtk_geometry_out_nodes(self, settings, parent_item):
         tk_node_type = 'sgtk_geometry_output'
         nodes = hou.nodeType(hou.ropNodeTypeCategory(), tk_node_type).instances()
         for node in nodes:
-            self._create_sgtk_geometry_node_item(node, parent_item)
+            self._create_sgtk_geometry_node_item(settings, node, parent_item)
         return
 
-    def _create_sgtk_geometry_node_item(self, node, parent_item):
-        '''
+    def _create_sgtk_geometry_node_item(self, settings, node, parent_item):
         template_menu_index = node.parm('template_menu').eval()
         menu_labels = node.parm('template_menu').menuLabels()
         selected_format = menu_labels[template_menu_index]
-        '''
+        publisher = self.parent
+        if selected_format.lower() == 'vdb':
+            work_template_setting = settings.get("VDB Template")
+        else:
+            work_template_setting = settings.get("BGEO Template")
+        if work_template_setting:
+            work_template = publisher.engine.get_template_by_name(
+                work_template_setting.value
+            )
         node_child = node.children()[0]     # get HDA inner geometry node
         node_output_path = node_child.parm('sopoutput').eval()
         if self._node_output_exist(node_output_path) and self._is_correct_output_version(node_output_path):
             item = super(HoudiniSessionCollector, self)._collect_file(
                 parent_item, node_output_path, frame_sequence=True
             )
-        node_name = node.name()
-        item.name = node_name
-        item.properties["publish_name"] = node_name
+            node_name = node.name()
+            item.name = node_name
+            item.properties["publish_name"] = node_name
+            item.properties["work_template"] = work_template
 
     @staticmethod
     def _node_output_exist(node_output_path):

@@ -225,6 +225,8 @@ settings.tk-multi-publish2.houdini.shot_step:
   collector: "{self}/collector.py:{engine}/tk-multi-publish2/basic/collector.py:{config}/tk-multi-publish2/houdini/collector.py"
   collector_settings:
       Work Template: houdini_shot_work
+      VDB Template: houdini_shot_output_vdb
+      BGEO Template: houdini_shot_output_bgeo
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"

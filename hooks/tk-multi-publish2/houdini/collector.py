@@ -69,14 +69,14 @@ class HoudiniSessionCollector(HookBaseClass):
         :param dict settings: Configured settings for this collector
         :param parent_item: Root item instance
         """
-        # create an item representing the current houdini session
 
         item = self.collect_current_houdini_session(settings, parent_item)
+        self._alembic_nodes_collected = False
+        self._mantra_nodes_collected = False
+        self.collect_tk_alembicnodes(item)
+        self.collect_tk_mantranodes(item)
+        self.collect_node_outputs(item)
         self._collect_sgtk_geometry_out_nodes(settings, item)
-
-    def collect_current_houdini_session(self, settings, parent_item):
-        session_item = super(HoudiniSessionCollector, self).collect_current_houdini_session(settings, parent_item)
-        return session_item
 
     def _collect_sgtk_geometry_out_nodes(self, settings, parent_item):
         tk_node_type = 'sgtk_geometry_output'
@@ -101,7 +101,7 @@ class HoudiniSessionCollector(HookBaseClass):
         node_child = node.children()[0]     # get HDA inner geometry node
         node_output_path = node_child.parm('sopoutput').eval()
         if self._node_output_exist(node_output_path) and self._is_correct_output_version(node_output_path):
-            item = super(HoudiniSessionCollector, self)._collect_file(
+            item = self._collect_file(
                 parent_item, node_output_path, frame_sequence=True
             )
             node_name = node.name()

@@ -33,8 +33,4 @@ settings.tk-houdini-alembicnode.shot_step:
     settings: {}
     color: []
     output_cache_template: houdini_shot_work_alembic_cache
-  - name: Shot Work Cache TEST
-    settings: { }
-    color: [ ]
-    output_cache_template: houdini_shot_work_alembic_cache
   location: "@apps.tk-houdini-alembicnode.location"

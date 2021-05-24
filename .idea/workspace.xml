@@ -21,7 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3ae78824-8ea5-4480-8780-8da4f6549bb9" name="Default Changelist" comment="working vdb and bgeo publish node">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-houdini-alembicnode.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-houdini-alembicnode.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/templates.yml" beforeDir="false" afterPath="$PROJECT_DIR$/core/templates.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-loader2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/env/includes/settings/tk-multi-publish2.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-houdini_actions.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-loader2/tk-houdini_actions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/collector.py" beforeDir="false" afterPath="$PROJECT_DIR$/hooks/tk-multi-publish2/houdini/collector.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -157,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620923129965</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="working vdb and bgeo publish node">
+      <created>1621002505327</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1621002505327</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -188,10 +198,6 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="906" y="378" key="#Inspections/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613731593661" />
-    <state x="1045" y="523" key="#Notifications" timestamp="1612803703635">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1045" y="523" key="#Notifications/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1612803703635" />
     <state x="734" y="354" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1613731606342">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -214,19 +220,19 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="781" y="344" key="SettingsEditor/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613392733154" />
-    <state x="3432" y="432" key="Vcs.Push.Dialog.v2" timestamp="1620923141635">
-      <screen x="2560" y="0" width="2560" height="1400" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2" timestamp="1621002506838">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="872" y="432" key="Vcs.Push.Dialog.v2/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613641371480" />
-    <state x="872" y="432" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1619091078080" />
+    <state x="872" y="432" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1621002506838" />
     <state x="3432" y="432" key="Vcs.Push.Dialog.v2/2560.0.2560.1400/0.0.2560.1400@2560.0.2560.1400" timestamp="1620923141635" />
     <state x="999" y="0" width="1107" height="959" key="dock-window-1" timestamp="1613471577305">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="999" y="0" width="1107" height="959" key="dock-window-1/0.0.2560.1400/2560.0.1080.1880@0.0.2560.1400" timestamp="1613471577305" />
-    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1618568991450">
+    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup" timestamp="1621596674025">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1618568991450" />
+    <state x="303" y="320" width="672" height="678" key="search.everywhere.popup/2560.0.2560.1400/0.0.2560.1400@0.0.2560.1400" timestamp="1621596674025" />
   </component>
 </project>

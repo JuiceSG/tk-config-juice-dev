@@ -62,8 +62,8 @@ keys:
         type: str
     pass:
         type: str
-    
-    
+
+
     # Represents the optional output name for frames written by the Shotgun Write Node
     nuke.output:
         alias: output
@@ -224,9 +224,10 @@ paths:
         definition: '@shot_step_root/publish'
     shot_output_area:
         definition: '@shot_step_root/output'
+    # TEST for multi layer multi pass loader
     shot_render_multilayer:
         definition: '@shot_publish_area/{Shot}_{name}_{step_code}_v{version}/{Shot}_{name}_{step_code}_v{version}.{layer}.{pass}.{SEQ}.{render_ext}'
-   
+
     #
     # Standalone
     #
@@ -325,9 +326,13 @@ paths:
         definition: '@shot_output_area/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Shot}_{name}_{step_code}_v{version}.{SEQ}.exr'
     # Templates for sgtk_geometry_node
     houdini_shot_output_vdb:
-        definition: '@shot_output_area/{name}_{object_name}/{name}_{object_name}_v{version}.{SEQ}.vdb'
+        definition: '@shot_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.{SEQ}.vdb'
     houdini_shot_output_bgeo:
-        definition: '@shot_output_area/{name}_{object_name}/{name}_{object_name}_v{version}.{SEQ}.bgeo.sc'
+        definition: '@shot_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.{SEQ}.bgeo.sc'
+    houdini_shot_output_ass:
+        definition: '@shot_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.ass'
+    houdini_shot_output_abc:
+        definition: '@shot_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.abc'
 
     #
     # 3dsmax
@@ -483,9 +488,9 @@ paths:
     # The location of published houdini files
     houdini_asset_publish:
         definition: '@asset_publish_area/{Asset}_{name}_{step_code}_v{version}.hip'
-    # Alembic caches
+    # Alembic caches$JOIB
     houdini_asset_work_alembic_cache:
-        definition: '@asset_output_area/alembic/{name}/{houdini.node}/v{version}/{Asset}_{name}_{step_code}_v{version}.abc'
+        definition: '@asset_output_area/alembic/{name}/{houdini.node}/v{version}/{Asset}_{houdini.node}/v{version}/{Asset}_{name}_{step_code}_v{version}.abc'
     # Rendered images
     houdini_asset_render:
         definition: '@asset_output_area/images/{name}/{houdini.node}/v{version}/{width}x{height}/{Asset}_{name}_{step_code}_v{version}.{SEQ}.exr'
@@ -498,9 +503,13 @@ paths:
         definition: '@asset_output_area/images/{name}/{houdini.node}/{aov_name}/v{version}/{width}x{height}/{Asset}_{name}_{step_code}_v{version}.{SEQ}.exr'
     # Templates for sgtk_geometry_node
     houdini_asset_output_vdb:
-        definition: '@asset_output_area/{name}_{object_name}/{name}_{object_name}_v{version}.{SEQ}.vdb'
+        definition: '@asset_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.vdb'
     houdini_asset_output_bgeo:
-        definition: '@asset_output_area/{name}_{object_name}/{name}_{object_name}_v{version}.{SEQ}.bgeo.sc'
+        definition: '@asset_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.bgeo.sc'
+    houdini_asset_output_ass:
+        definition: '@asset_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.ass'
+    houdini_asset_output_abc:
+        definition: '@asset_output_area/{name}_{houdini.node}/{name}_{houdini.node}_v{version}.abc'
 
     #
     # 3dsmax

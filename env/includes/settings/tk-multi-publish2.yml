@@ -205,6 +205,8 @@ settings.tk-multi-publish2.houdini.asset_step:
       Work Template: houdini_asset_work
       VDB Template: houdini_asset_output_vdb
       BGEO Template: houdini_asset_output_bgeo
+      ASS Template: houdini_asset_output_ass
+      ABC Template: houdini_asset_output_abc
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"
@@ -229,6 +231,8 @@ settings.tk-multi-publish2.houdini.shot_step:
       Work Template: houdini_shot_work
       VDB Template: houdini_shot_output_vdb
       BGEO Template: houdini_shot_output_bgeo
+      ASS Template: houdini_shot_output_ass
+      ABC Template: houdini_shot_output_abc
   publish_plugins:
   - name: Publish to Shotgun
     hook: "{self}/publish_file.py"

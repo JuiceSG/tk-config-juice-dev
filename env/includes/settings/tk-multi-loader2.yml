@@ -79,8 +79,9 @@ settings.tk-multi-loader2.houdini:
     Rendered Image: [file_cop]
     Texture: [file_cop]
     ABC Camera: [import]
-    Vdb File: [file_load]
-    Sc File: [file_load]
+    Vdb File: [geo_load]
+    Sc File: [geo_load]
+    Ass File: [arnold_load]
   entities:
   - caption: Assets
     entity_type: Asset

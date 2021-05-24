@@ -65,10 +65,19 @@ class HoudiniActions(HookBaseClass):
         if 'file_load' in actions:
             action_instances.append(
                 {
-                    'name': 'file_load',
+                    'name': 'geo_load',
                     'params': None,
-                    'caption': 'File Load',
-                    'description': "This will load files to scene using file node.",
+                    'caption': 'Geo load',
+                    'description': 'This will load files to scene using file node.',
+                }
+            )
+        if 'arnold_load' in actions:
+            action_instances.append(
+                {
+                    'name': 'arnold_load',
+                    'params': None,
+                    'caption': 'Arnold load',
+                    'description': 'Load Arnold .ass files'
                 }
             )
 
@@ -87,24 +96,55 @@ class HoudiniActions(HookBaseClass):
 
         super(HoudiniActions, self).execute_action(name, params, sg_publish_data)
         path = self.get_publish_path(sg_publish_data)
-        if name == 'file_load':
-            self._file_load(path, sg_publish_data)
+        if name == 'geo_load':
+            self._geo_load(path, sg_publish_data)
+        if name == 'arnold_load':
+            self._arnold_load(path, sg_publish_data)
 
-    def _file_load(self, path, sg_publish_data):
+    def _geo_load(self, path, sg_publish_data):
+        """
+        method which use geometry node to load bgeo and VDB files into Houdini scene
+        path: path to the file to load
+        sg_publish_data: publish data from Shotgun
+        """
+
         app = self.parent
-        name = self.__create_node_name(sg_publish_data)
-        path = self.__get_houdini_formated_publish_path(sg_publish_data)
+        name = self.__generate_node_name(sg_publish_data)
+        #path = self.__get_houdini_formated_publish_path(sg_publish_data)
         obj_context = _get_current_context('/obj')
         geo_node = self.__create_geo_node(app, obj_context, name)
         file_sop = self.__create_file_sop(app, geo_node, name, path)
         _show_node(file_sop)
 
-    def __create_node_name(self,sg_publish_data):
+    def _arnold_load(self, path, sg_publish_data):
+        """
+        method which load Arnold ASS files into houdini scene using Arnold procedural Node
+        path: path to the file to load
+        sg_publish_data: publish data from Shotgun
+        """
+
+        app = self.parent
+        name =  self.__generate_node_name(sg_publish_data)
+        obj_context = _get_current_context('/obj')
+        arnold_procedural_node = self.__create_arnold_node(app, obj_context, name)
+        self.__load_geometry_to_arnold_node(app, arnold_procedural_node, name, path)
+
+    def __generate_node_name(self, sg_publish_data):
+        """
+        method generating name for loader node which contain current version number
+        sg_publish_data: publish data from Shotgun
+        """
+
         name = self.__get_name_from_publish_data(sg_publish_data)
         version = self.__get_version_from_publish_data(sg_publish_data)
         return '%s_%s' % (name, version)
 
     def __get_houdini_formated_publish_path(self, sg_publish_data):
+        """
+        method changing frame sequence convention to work with Houdini, and normalize path separators
+        sg_publish_data: publish data from Shotgun
+        """
+
         path = self.get_publish_path(sg_publish_data)
         path = path.replace('\\', '/')
         path = path.replace('%04d', '$F4')
@@ -112,6 +152,11 @@ class HoudiniActions(HookBaseClass):
 
     @staticmethod
     def __get_name_from_publish_data(sg_publish_data):
+        """
+        method which obtain name from published data
+        sg_publish_data: publish data from Shotgun
+        """
+
         name = sg_publish_data.get('name', 'published_file')
         pattern = re.compile("[\W_]+")
         name = pattern.sub("_", name)
@@ -119,12 +164,24 @@ class HoudiniActions(HookBaseClass):
 
     @staticmethod
     def __get_version_from_publish_data(sg_publish_data):
+        """
+        method which obtain version from published data
+        sg_publish_data: publish data from Shotgun
+        """
+
         version = sg_publish_data.get('version_number','published_file')
         version = 'v%03d' % version
         return version
 
     @staticmethod
     def __create_geo_node(app, obj_context, name):
+        """
+        method for creating geometry node with provided name, which will load bgeo or VDB files
+        app: current app
+        obj_context: current context
+        name: name which will be used for creating node
+        """
+
         try:
             geo_node = obj_context.createNode('geo', name)
         except:
@@ -136,7 +193,32 @@ class HoudiniActions(HookBaseClass):
         return geo_node
 
     @staticmethod
+    def __create_arnold_node(app, obj_context, name):
+        """
+        method which create Arnold procedural node
+        app: current app
+        obj_context: current context
+        name: name which will be used for creating node
+        """
+
+        try:
+            arnold_node = obj_context.createNode('arnold_procedural', name)
+        except:
+            obj_context = hou.node('/obj')
+            arnold_node = obj_context.createNode('arnold_procedural', name)
+        app.log_debug("Created geo node: %s" % (arnold_node.path(),))
+        return arnold_node
+
+    @staticmethod
     def __create_file_sop(app,geo_node, name, path):
+        """
+        crate sop node which will load bgeo or VDB file into scene
+        app: current app
+        geo_node: geo node which will contain this node
+        name: name which will be used for creating node
+        path: path to file on disk
+        """
+
         file_sop = geo_node.createNode('file', name)
         file_sop.parm('file').set(path)
         app.log_debug(
@@ -144,6 +226,11 @@ class HoudiniActions(HookBaseClass):
         )
         file_sop.parm('reload').pressButton()
         return file_sop
+
+    @staticmethod
+    def __load_geometry_to_arnold_node(app, node, name, path):
+        node.parm('ar_filename').set(path)
+
 
 ##############################################################################################################
 def _get_current_context(context_type):
@@ -159,7 +246,6 @@ def _get_current_context(context_type):
 
     # default to the top level context type
     context = hou.node(context_type)
-
     network_tab = _get_current_network_panetab(context_type)
     if network_tab:
         context = network_tab.pwd()
